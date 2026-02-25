@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mshengu Holdings · clean · modern · strong</title>
+  <!-- Google Font + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ----- HERO with background image ----- */
+    .hero {
+      position: relative;
+      background: url('/BackgroundImage.jpg') center/cover no-repeat;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 30, 60, 0.65);
+      backdrop-filter: brightness(0.9) blur(2px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      padding: 2rem;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero-content p {
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: white;
+      color: #1e3a5f;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 0.9rem 2.8rem;
+      border-radius: 60px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.3);
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .hero-btn:hover {
+      background: #f0f4ff;
+      transform: scale(1.02);
+      box-shadow: 0 18px 30px -8px #001a33;
+    }
+
+    /* ----- STICKY NAVIGATION (clean white with hamburger) ----- */
+    nav {
+      background: #ffffff;
+      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 8px 20px -8px rgba(0,34,68,0.1);
+      border-bottom: 1px solid #eaeef5;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      color: #1f2a44;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 0.5rem 0;
+      transition: 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #1e4f8a;
+      color: #0b2b4f;
+    }
+
+    /* hamburger icon (hidden on desktop) */
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      color: #1e3a5f;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .hamburger:hover {
+      background: #f0f4ff;
+    }
+
+    /* ----- SECTIONS (white, clean) ----- */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0b2b4f;
+      margin-bottom: 3.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      border-bottom: 5px solid #1e4f8a;
+      padding-bottom: 0.3rem;
+    }
+
+    /* about */
+    #about p {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.3rem;
+      color: #2d3f5e;
+      background: #f8fafd;
+      padding: 2.5rem 3rem;
+      border-radius: 36px;
+      box-shadow: 0 6px 18px #e6ecf5;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ----- SQUARE SERVICE CARDS (with online images) ----- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px -12px rgba(0, 50, 90, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.25s;
+      border: 1px solid #eef3fa;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 40px -15px #1e4f8a40;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1; /* square image */
+      object-fit: cover;
+      background: #cbd5e1;
+    }
+
+    .card-content {
+      padding: 1.5rem 1.2rem 1.8rem;
+      background: white;
+      flex: 1;
+    }
+
+    .card-content h3 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #0b2b4f;
+    }
+
+    .card-content p {
+      font-size: 1rem;
+      color: #3a4d6e;
+      line-height: 1.5;
+    }
+
+    /* contact section – fully responsive card */
+    #contact {
+      background: white;
+    }
+
+    .contact-card {
+      background: #f3f7fc;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      border-radius: 48px;
+      box-shadow: 0 15px 30px -10px #b0c6dd;
+      text-align: center;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      font-size: 1.5rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+      word-break: break-word;
+    }
+
+    .contact-item i {
+      color: #1e4f8a;
+      font-size: 2.2rem;
+      width: 2.8rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: #10345e;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: border 0.2s;
+      word-break: break-word;
+    }
+
+    .contact-item a:hover {
+      border-bottom-color: #1e4f8a;
+    }
+
+    .contact-item span {
+      word-break: break-word;
+    }
+
+    /* footer */
+    footer {
+      background: #0b1f33;
+      color: #d9e6f5;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 1.1rem;
+      border-top: 6px solid #d4e2f0;
+    }
+
+    /* ----- RESPONSIVE (hamburger + contact tweaks) ----- */
+    @media (max-width: 700px) {
+      .hero-content h1 { font-size: 2.8rem; }
+      .hero-content p { font-size: 1.4rem; }
+      .section-title { font-size: 2.2rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+
+      /* hide regular nav links, show hamburger */
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
+        border-top: 1px solid #eaeef5;
+      }
+
+      .nav-links a {
+        font-size: 1.4rem;
+        padding: 0.7rem 0;
+        border-bottom: 2px solid transparent;
+      }
+
+      .nav-links a:hover {
+        border-bottom-color: #1e4f8a;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    /* small screens: contact card adjustments */
+    @media (max-width: 600px) {
+      .contact-card {
+        padding: 2rem 1.5rem;
+      }
+      .contact-item {
+        font-size: 1.3rem;
+        gap: 1rem;
+      }
+      .contact-item i {
+        font-size: 1.9rem;
+        width: 2.4rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .contact-card {
+        padding: 1.8rem 1rem;
+        border-radius: 36px;
+      }
+      .contact-item {
+        font-size: 1.1rem;
+        gap: 0.8rem;
+        margin: 1rem 0;
+      }
+      .contact-item i {
+        font-size: 1.6rem;
+        width: 2rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ensure long email/phone wrap inside card */
+    .contact-item a, .contact-item span {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO with background image (construction site) -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Mshengu Holdings</h1>
+      <p>construction · equipment · mining · renovations</p>
+      <a href="#services" class="hero-btn">Explore services</a>
+    </div>
+  </div>
+
+  <!-- Sticky navigation with hamburger (clean white) -->
+  <nav>
+    <div class="nav-container">
+      <!-- optional logo placeholder (empty) -->
+      <div style="width: 30px;"></div> <!-- spacer for alignment (optional) -->
+      <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title"><span>About us</span></h2>
+    <p>We are Mshengu Holdings a modern industrial partner built on reliability. From mobile sanitation and refrigeration to full‑scale construction and mining support, we deliver with transparency and grit. Based in Pretoria, serving nationwide.</p>
+  </section>
+
+  <!-- SERVICES with square cards & real images (local placeholders) -->
+  <section id="services">
+    <h2 class="section-title"><span>Our services</span></h2>
+    <div class="services-grid">
+      <!-- Construction -->
+      <div class="service-card">
+        <img class="card-img" src="Construction.jpg" alt="construction site" loading="lazy">
+        <div class="card-content">
+          <h3>Construction</h3>
+          <p>New builds, structural work, and project management commercial & residential.</p>
+        </div>
+      </div>
+      <!-- Mobile toilets -->
+      <div class="service-card">
+        <img class="card-img" src="pexels-caleboquendo-34585129.jpg" alt="mobile toilet" loading="lazy">
+        <div class="card-content">
+          <h3>Mobile toilets</h3>
+          <p>High‑capacity, hygienic portable toilets for sites, festivals, and remote areas.</p>
+        </div>
+      </div>
+      <!-- Mobile fridges -->
+      <div class="service-card">
+        <img class="card-img" src="Mobile Fridge.jpeg" alt="mobile fridge" loading="lazy">
+        <div class="card-content">
+          <h3>Mobile fridges</h3>
+          <p>Reliable cold chain for camps, clinics, and catering diesel & solar options.</p>
+        </div>
+      </div>
+      <!-- Mining plant -->
+      <div class="service-card">
+        <img class="card-img" src="Mining-plant.jpg" alt="mining site" loading="lazy">
+        <div class="card-content">
+          <h3>Mining plant</h3>
+          <p>Monitoring, maintenance, and operational support for mineral processing.</p>
+        </div>
+      </div>
+      <!-- Renovations -->
+      <div class="service-card">
+        <img class="card-img" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&auto=format&fit=crop" alt="renovation" loading="lazy">
+        <div class="card-content">
+          <h3>Renovations</h3>
+          <p>Complete interior & exterior makeovers offices, retail, and homes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (fully responsive card) -->
+  <section id="contact">
+    <h2 class="section-title"><span>Contact us</span></h2>
+    <div class="contact-card">
+      <div class="contact-item">
+        <i class="fa-regular fa-envelope"></i>
+        <a href="mailto:info@mshenguholdings.co.za">info@mshenguholdings.co.za</a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-phone-alt"></i>
+        <a href="tel:+27123456789">+27 72 747 1288</a>
+      </div>
+      <div class="contact-item">
+        <i class="fa-regular fa-building"></i>
+        <span>662 2nd Street, Carolina Silobela</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Mshengu Holdings (Pty) Ltd. All rights reserved. </p>
+  </footer>
+
+  <!-- simple JavaScript for hamburger toggle -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
+    function closeMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.remove('active');
+    }
+
+    // optional: close menu when clicking outside (basic)
+    document.addEventListener('click', function(event) {
+      const nav = document.querySelector('nav');
+      const navLinks = document.getElementById('navLinks');
+      const hamburger = document.getElementById('hamburgerBtn');
+      if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
